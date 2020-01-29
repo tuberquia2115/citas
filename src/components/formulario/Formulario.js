@@ -7,8 +7,9 @@ const Formulario = ({ crearCita }) => {
         propietario: '',
         fecha: '',
         hora: '',
-        sintomas: ''
+        sintomas: '',
     })
+    const [file, setFile] = useState(null);
     const [error, updateError] = useState(false)
     const actualizarState = e => {
         updateQuote({
@@ -32,6 +33,7 @@ const Formulario = ({ crearCita }) => {
         updateError(false)
         //asignar UD
         quote.id = uuid();
+        quote.img= file
         //Crear cita
         crearCita(quote)
         //  reiniciar formulario
@@ -44,18 +46,29 @@ const Formulario = ({ crearCita }) => {
         })
         console.log(quote);
     }
+
+    const capturarURL = e => {
+        if (e.target.files && e.target.files[0]) {
+            var reader = new FileReader()
+            reader.onload = e => {
+                setFile(e.target.result)
+            }
+        }
+        return reader.readAsDataURL(e.target.files[0])
+
+    }
     return (
         <Fragment>
             <h1>Crear citas</h1>
             {error ? <p className="alerta-error">Todos los campos son obligatorios</p> : null}
-            <form
+            <form className="registro"
                 onSubmit={submitCita}
             >
                 <label>Nombre Mascota</label>
                 <input
                     value={mascota}
                     onChange={actualizarState}
-                    type="name"
+                    type="text"
                     name="mascota"
                     className="u-full-width"
                     placeholder="Nombre mascota"
@@ -64,7 +77,7 @@ const Formulario = ({ crearCita }) => {
                 <input
                     value={propietario}
                     onChange={actualizarState}
-                    type="name"
+                    type="text"
                     name="propietario"
                     className="u-full-width"
                     placeholder="Nombre del dueño de la mascota"
@@ -92,6 +105,14 @@ const Formulario = ({ crearCita }) => {
                     name="sintomas"
                     className="u-full-width"
                 ></textarea>
+                <label>Archivo</label>
+                <input
+                    onChange={capturarURL}
+                    type="file"
+                    name="imagen"
+                    accept="image/png, .jpeg, .jpg, image/gif"
+                    className="u-full-width"
+                />
                 <button
                     type="submit"
                     className="u-full-width button-primary"

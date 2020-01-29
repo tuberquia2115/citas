@@ -5,12 +5,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-image: linear-gradient(-225deg, #A445B2 0%, #D41872 52%, #FF0066 100%);
+  background-image: linear-gradient(-225deg, rgb(149, 125, 153) 0%, rgb(138, 100, 118) 52%, rgb(99, 45, 66) 100%);
   min-height: 100%;
   padding-bottom: 5rem;
 }
 h1, h2  {
-  color: white;
+  color: black;
   padding: 3rem 0;
   text-align: center;
 
@@ -38,13 +38,14 @@ h1, h2  {
 }
 
 label {
-  color: white;
+  color: rgb(10, 10, 10);
 }
 
 input[type="date"],
+input[type="text"],
 input[type="time"] {
   height: 38px;
-    padding: 6px 10px;
+    padding: 5px 10px;
     background-color: #fff;
     border: 1px solid #D1D1D1;
     border-radius: 4px;
@@ -67,9 +68,16 @@ input[type="time"] {
   font-weight: normal;
 
 }
+.registro {
+  background-color: white;
+  border: 1px solid  #D1D1D1;
+  border-radius: 2rem;
+  padding: 1rem;
+}
 .cita:first-of-type {
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
+  padding: 1rem;
 }
 .cita:last-of-type {
   border-bottom-left-radius: 1rem;
@@ -84,10 +92,14 @@ input[type="time"] {
 
 .alerta-error {
   background-color: white;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
   color: red;
   padding: 1rem;
   font-size: 2rem;
   text-transform: uppercase;
   text-align: center;
   font-family:  'Staatliches', cursive;
+  box-shadow: none;
+  box-sizing: border-box;
 } 
